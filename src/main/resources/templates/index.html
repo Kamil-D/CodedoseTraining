@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+
+    <!-- W head znajdują się: kodowanie znaków, język, tytuł i opis w wyszukiwarce, skrypty JavaScript,
+    arkusze styli CSS, czcionki Google'a-->
+    <meta charset="UTF-8">
+    <title>Hugh Jackman - Wolverine</title>
+	<meta name="description" content="Witryna internetowa będąca małym hołdem dla Hugh Jackmana wcielającego się w filmową postać Wolverine'a" />
+	<meta name="keywords" content="Wolverine, Rosomak, X-Men, Mutant, Hugh Jackman, Weapon X, Broń X, Adamantium claws, szpony" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	</meta>
+
+	<!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</link>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<script>
+
+		// Funkcja wywoływana, gdy dokument HTML zostanie w pełni załadowany
+		$( document ).ready(function() {
+
+			// Chwyta element o klasie "zaladujTresc" i sprawia, że po kliknięciu na niego wywołana zostanie funkcja "getData".
+			$('.zaladujTresc').click(getData);
+		});
+
+
+		// Funkcja wykonujca zapytanie JSON i przetwarzajca odpowiedź.
+		function getData() {
+
+			$.ajax({
+				url: "http://localhost:8080/getAjax"
+			}).then(function(data) {
+				$('.containerAjax').append(data);
+			});
+
+		}
+	</script>
+
+	<style>
+
+		.banner, #logo {
+			/*background-image:url('../static/img/wolverine1.jpeg');*/
+			background-image:url('https://i.ytimg.com/vi/9prTd7cWa2E/maxresdefault.jpg');
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			height: 500px;
+		}
+
+		#image
+		{
+			height: 400px;
+			display: block;
+			margin: 0 auto;
+		}
+		
+		.logo
+		{
+			background-color: black;
+			color: white;
+			text-align: center;
+		}
+		
+
+		.menu
+		{
+			background-color: #222;
+			height: 600px;
+			color: #E6E6E6;
+			padding: 10px;
+			margin-top: 5px;
+			box-sizing: border-box;
+			border-color: transparent;
+			border-style: solid;
+			border-width: 5px;
+			border-color: #6E6E6E;
+		}
+		
+		.menu-list
+		{
+			color: #E6E6E6;
+			padding: 10px;
+			font-size: 20px;
+		}
+		
+		.list-margin
+		{
+			margin: 8px 0;
+		}
+		
+		.content
+		{
+			background-color: #E6E6E6;
+			<!-- background-color: #BDBDBD; -->
+			color: #1C1C1C;
+			min-height: 600px;
+			margin-top: 5px;
+			<!-- margin-left: 5px; -->
+		}
+		
+		#footer
+		{
+			text-align: center;
+			color: #1C1C1C;
+			clear: both;		
+		}
+		
+		.bottomleft
+		{
+			position: absolute;
+			bottom: 15px;
+			font-size: 20px;
+		}
+
+		.photo-div
+		{
+			min-height: 250px;	
+			background-repeat: no-repeat;
+			background-size: cover;
+			<!-- margin-left: 45px; -->
+		}
+		
+		.photo-list
+		{
+			margin-bottom: 35px;
+		}
+
+
+
+		
+	</style>
+	
+</head>
+
+<body bgcolor="#E6E6E6">
+
+	<header>
+	
+		<nav class="navbar navbar-inverse">
+		    <div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Hugh Jackman Unofficial Website</a>
+			</div>
+				
+			<ul class="nav navbar-nav">
+			    <li class="active"><a href="http://localhost:8080/">Home</a></li>
+			    <li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Page 1
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+					    <li><a href="#">Page 1-1</a></li>
+					    <li><a href="#">Page 1-2</a></li>
+					    <li><a href="#">Page 1-3</a></li>
+					</ul>
+				</li>
+			    <li><a href="#">Page 2</a></li>
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+			    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			</ul>
+		  </div>
+		  
+		</nav>
+	
+	</header>
+
+	<div class="row">
+		
+			<div class="banner">
+			</div>
+
+			<div class="col-md-12 logo" >
+
+				  <h2>Hugh "Wolverine" Jackman</h2>
+
+			</div>			
+    </div>
+	
+	<div class="container">
+
+		
+		<div class="row">
+	  
+			<div class="col-md-3 menu">
+			
+				<div class="sidebar-module">
+					<h3 align="center" >Menu</h3>
+					<ol class="list-unstyled">
+						<li class="list-margin" ><a class="menu-list" href="#">Opcja 1</a></li>
+					    <li class="list-margin" ><a class="menu-list" href="#">Opcja 2</a></li>
+					    <li class="list-margin" ><a class="menu-list" href="#">Opcja 3</a></li>
+					    <li class="list-margin" ><a class="menu-list" href="#">Opcja 4</a></li>
+					    <li class="list-margin" ><a class="menu-list" href="#">Opcja 5</a></li>
+					</ol>
+				</div>
+				
+				<div class="sidebar-module bottomleft">
+				
+					<h3>Oficjalne strony:</h3>
+					<ol class="list-unstyled">
+						<li class="list-margin" ><a class="menu-list" href="#">
+							<a style="color:#81d4fa;" href="https://twitter.com/realhughjackman" target="_blank" title="Przekierowanie do Twittera">Twitter</a>
+						</a></li>
+						<li class="list-margin" ><a class="menu-list" href="#">
+							<a style="color:#1565c0;" href="https://pl-pl.facebook.com/HughJackman/" target="_blank" title="Przekierowanie do Facebook'a">Facebook</a>
+						</a></li>
+					</ol>
+				
+				</div>
+			
+			</div>
+			
+			<!-- <div class="col-md-9 content"> -->
+			
+				<div class="col-md-9 content jumbotron">
+					<div class="container">
+						<h1 style="font-size:300%;" align="center">Galeria zdjęć</h1>
+					</div> 
+				
+					<br /> <br />
+
+
+					<div align="center" class="container1">
+
+						<div class="containerAjax"></div>
+						<button class="zaladujTresc">Get info</button>
+
+					</div>
+
+					<br /> <br />
+
+					<div align="center" class="container">
+
+						        <button type="button" class="btn btn-lg btn-default">Default</button>
+								<button type="button" class="btn btn-lg btn-primary">Primary</button>
+								<button type="button" class="btn btn-lg btn-success">Success</button>
+								<button type="button" class="btn btn-lg btn-info">Info</button>
+								<button type="button" class="btn btn-lg btn-warning">Warning</button>
+								<button type="button" class="btn btn-lg btn-danger">Danger</button>
+								<button type="button" class="btn btn-lg btn-link">Link</button>
+					
+					</div> 
+					
+					<br /> <br />
+					
+					<p>This web site is about <abbr title="HyperText Markup Language">HTML</abbr> and <abbr title="Cascading Style Sheets">CSS</abbr>.</p>
+					
+					<p>According to <cite>the Bible</cite>, after six days God said <q>screw this for a lark, I'm having a nap</q>.</p>
+
+					<p>Bob's <dfn title="Dog">canine</dfn> mother and <dfn title="Horse">equine</dfn> father sat him down and carefully explained that he was an <dfn title="A mutation that combines two or more sets of chromosomes from different species">allopolyploid</dfn> organism.</p>
+
+					<br /> <br />
+					
+					<section class="row">
+				<!-- col-lg-offset-1 -->
+						<div class="col-xs-12 col-sm-9 col-md-7 col-lg-6 photo-div">
+							<a target="_blank" href = "http://d2vrsup6vl2y4n.cloudfront.net/wp-content/uploads/2016/03/1870_1_HJ-galeri.jpg" class = "photo-list thumbnail">
+								<img src="http://d2vrsup6vl2y4n.cloudfront.net/wp-content/uploads/2016/03/1870_1_HJ-galeri.jpg" alt="Generic placeholder thumbnail"/>
+							</a>
+						</div>
+							
+						<div class="col-xs-12 col-sm-9 col-md-7 col-lg-6 photo-div">
+							<a target="_blank" href = "https://www.mtlblog.com/uploads/227049_d1ac9adda15ff3ddc3442cee8106d9fbd563e059.jpg" class = "photo-list thumbnail">
+								<img src="https://www.mtlblog.com/uploads/227049_d1ac9adda15ff3ddc3442cee8106d9fbd563e059.jpg" alt="Generic placeholder thumbnail"/>
+							</a>
+						</div>
+						
+						<div class="col-xs-12 col-sm-9 col-md-7 col-lg-6 photo-div">
+							<a target="_blank" href = "http://i0.wp.com/peopledotcom.files.wordpress.com/2016/10/hugh-jackman4.jpg?crop=1px%2C0px%2C1997px%2C1333.1620879121px&resize=728%2C486&ssl=1" class = "photo-list thumbnail">
+								<img src="http://i0.wp.com/peopledotcom.files.wordpress.com/2016/10/hugh-jackman4.jpg?crop=1px%2C0px%2C1997px%2C1333.1620879121px&resize=728%2C486&ssl=1" alt="Generic placeholder thumbnail"/>
+							</a>
+						</div>
+
+						<div class="col-xs-12 col-sm-9 col-md-7 col-lg-6 photo-div">
+							<a target="_blank" href = "http://www.wallpaperup.com/uploads/wallpapers/2014/02/05/248113/230bf96eb495205ce02474e3392dafab.jpg" class = "photo-list thumbnail">
+								<img src="http://www.wallpaperup.com/uploads/wallpapers/2014/02/05/248113/230bf96eb495205ce02474e3392dafab.jpg" alt="Generic placeholder thumbnail"/>
+							</a>
+						</div>
+
+						<div class="col-xs-12 col-sm-9 col-md-7 col-lg-6 photo-div">
+							<a target="_blank" href = "https://tribzap2it.files.wordpress.com/2015/09/hugh-jackman-getty.jpg" class = "photo-list thumbnail">
+								<img src="https://tribzap2it.files.wordpress.com/2015/09/hugh-jackman-getty.jpg" alt="Generic placeholder thumbnail"/>
+							</a>
+						</div>
+
+						<div class="col-xs-12 col-sm-9 col-md-7 col-lg-6 photo-div">
+							<a target="_blank" href = "https://www.quirkybyte.com/wp-content/uploads/2017/01/542b04f5202bb_-_hugh-jackman-cover-lg.jpg" class = "photo-list thumbnail">
+								<img src="https://www.quirkybyte.com/wp-content/uploads/2017/01/542b04f5202bb_-_hugh-jackman-cover-lg.jpg" alt="Generic placeholder thumbnail"/>
+							</a>
+						</div>
+
+						<div class="col-xs-12 col-sm-9 col-md-7 col-lg-6 photo-div">
+							<a target="_blank" href = "https://1.soompi.io/wp-content/uploads/2015/10/hugh-jackman.jpg" class = "photo-list thumbnail">
+								<img src="https://1.soompi.io/wp-content/uploads/2015/10/hugh-jackman.jpg" alt="Generic placeholder thumbnail"/>
+							</a>
+						</div>
+						
+					</section>
+
+			
+					
+				</div>
+		
+		
+		</div>
+		
+		
+		<div id="footer" class="col-md-12">
+
+			<p > Created by Kamil Działek &copy; Wszelkie prawa zastrzeżone
+				<a style="color:#1C1C1C;" href="https://www.facebook.com/kamilosdzialek" target="_blank" title="Kontakt">Kontakt Facebook</a>
+			</p> 
+	   
+		</div>
+	
+	</div>
+	
+			
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"/>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+	
+</body>
+
+</html>

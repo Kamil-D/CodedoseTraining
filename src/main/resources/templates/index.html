@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<html lang="en">
+<html lang="pl">
 <head>
 
     <!-- W head znajdują się: kodowanie znaków, język, tytuł i opis w wyszukiwarce, skrypty JavaScript,
@@ -20,15 +20,36 @@
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
+	<!--<script type="text/javascript" src="http://localhost:8080/script/MyClock.js"></script>-->
+
+	<!--<script src="http://localhost:8080/script/AjaxGetJsonActorInfo.js"></script>-->
+
 	<script>
+
+//		$(document).ready(function() {
+//
+//			//after button is clicked we download the data
+//			$('.getInfoFromServerButton').click(function(){
+//
+//				//start ajax request
+//				$.ajax({
+//					url: "http://localhost:8080/getAjax",
+//					dataType: "text",
+//
+//					success: function(data) {
+//						$('.containerAjax').append(data);
+//					}
+//				});
+//			});
+//		});
+
 
 		// Funkcja wywoływana, gdy dokument HTML zostanie w pełni załadowany
 		$( document ).ready(function() {
 
 			// Chwyta element o klasie "zaladujTresc" i sprawia, że po kliknięciu na niego wywołana zostanie funkcja "getData".
-			$('.zaladujTresc').click(getData);
+			$('.getInfoFromServerButton').click(getData);
 		});
-
 
 		// Funkcja wykonujca zapytanie JSON i przetwarzajca odpowiedź.
 		function getData() {
@@ -38,9 +59,78 @@
 			}).then(function(data) {
 				$('.containerAjax').append(data);
 			});
-
 		}
+
 	</script>
+
+	<script type="text/javascript">
+
+		function timeCounter() {
+
+			var todayTime = new Date();
+
+			var day = todayTime.getDate();
+			var month = todayTime.getMonth()+1;
+			if (month<10)
+				month = "0" + month;
+			var year = todayTime.getFullYear();
+
+			var hour = todayTime.getHours();
+			if (hour<10)
+				hour = "0" + hour;
+			var minute = todayTime.getMinutes();
+			if (minute<10)
+				minute = "0" + minute;
+			var second = todayTime.getSeconds();
+			if (second<10)
+				second = "0" + second;
+
+//			każemy skryptowi znaleźć element (dowolny) z naszego htmla i podmienić całą jego zawartość
+//			na to co znajduje się po znaku =
+//			document.getElementById("myClock").innerHTML = day + "/" + month + "/" + year + " | " + hour
+//					+ ":" + minute + ":" + second;
+			$("#myClock").text(day + "/" + month + "/" + year + " | " + hour
+					+ ":" + minute + ":" + second);
+
+			setTimeout("timeCounter()", 1000);
+		}
+
+	</script>
+
+	<script>
+
+		var slideNumber = Math.floor(Math.random()*7);
+		var photosURLArray = ["http://d2vrsup6vl2y4n.cloudfront.net/wp-content/uploads/2016/03/1870_1_HJ-galeri.jpg",
+								"https://www.mtlblog.com/uploads/227049_d1ac9adda15ff3ddc3442cee8106d9fbd563e059.jpg",
+								"http://i0.wp.com/peopledotcom.files.wordpress.com/2016/10/hugh-jackman4.jpg?crop=1px%2C0px%2C1997px%2C1333.1620879121px&resize=728%2C486&ssl=1",
+								"http://www.wallpaperup.com/uploads/wallpapers/2014/02/05/248113/230bf96eb495205ce02474e3392dafab.jpg",
+								"https://tribzap2it.files.wordpress.com/2015/09/hugh-jackman-getty.jpg",
+								"https://www.quirkybyte.com/wp-content/uploads/2017/01/542b04f5202bb_-_hugh-jackman-cover-lg.jpg",
+								"https://1.soompi.io/wp-content/uploads/2015/10/hugh-jackman.jpg"];
+
+		function fadeOutAnimation() {
+			$("#slider").fadeOut(500);
+		}
+
+		function changeSlide() {
+
+			var imgFile = "<img style=\"max-width: 100%; max-height: 100%;\" src=\"";
+			slideNumber++;
+
+			slideNumber = slideNumber%6;
+//			if (slideNumber>6) slideNumber = 0;
+
+			document.getElementById("slider").innerHTML = imgFile + photosURLArray[slideNumber] + "\" />";
+			// efekt pojawienia się zdjęcia
+			$("#slider").fadeIn(500);
+
+			setTimeout("changeSlide()", 3000);
+			setTimeout("fadeOutAnimation()", 2500);
+		}
+
+	</script>
+
+
 
 	<style>
 
@@ -68,6 +158,11 @@
 			text-align: center;
 		}
 		
+		#myClock
+		{
+			font-size: 20px;
+			color: #cedae2;
+		}
 
 		.menu
 		{
@@ -94,7 +189,12 @@
 		{
 			margin: 8px 0;
 		}
-		
+
+		.containerAjax
+		{
+			font-size: 16px;
+		}
+
 		.content
 		{
 			background-color: #E6E6E6;
@@ -121,15 +221,23 @@
 
 		.photo-div
 		{
-			min-height: 250px;	
+			min-height: 250px;
 			background-repeat: no-repeat;
 			background-size: cover;
 			<!-- margin-left: 45px; -->
 		}
-		
+
 		.photo-list
 		{
 			margin-bottom: 35px;
+		}
+
+		.div-slider
+		{
+			min-height:  300px;
+			margin-bottom: 50px;
+			background: no-repeat center center;
+			background-size: cover;
 		}
 
 
@@ -138,8 +246,8 @@
 	</style>
 	
 </head>
-
-<body bgcolor="#E6E6E6">
+<!--onload="timeCounter();"-->
+<body onload="timeCounter(); changeSlide();" bgcolor="#E6E6E6">
 
 	<header>
 	
@@ -193,7 +301,13 @@
 		<div class="row">
 	  
 			<div class="col-md-3 menu">
-			
+
+				<div align="center" id="myClock">
+
+					BLA BLA BLA
+
+				</div>
+
 				<div class="sidebar-module">
 					<h3 align="center" >Menu</h3>
 					<ol class="list-unstyled">
@@ -234,7 +348,7 @@
 					<div align="center" class="container1">
 
 						<div class="containerAjax"></div>
-						<button class="zaladujTresc">Get info</button>
+						<button class="getInfoFromServerButton">Get info</button>
 
 					</div>
 
@@ -242,26 +356,47 @@
 
 					<div align="center" class="container">
 
-						        <button type="button" class="btn btn-lg btn-default">Default</button>
-								<button type="button" class="btn btn-lg btn-primary">Primary</button>
-								<button type="button" class="btn btn-lg btn-success">Success</button>
-								<button type="button" class="btn btn-lg btn-info">Info</button>
-								<button type="button" class="btn btn-lg btn-warning">Warning</button>
-								<button type="button" class="btn btn-lg btn-danger">Danger</button>
-								<button type="button" class="btn btn-lg btn-link">Link</button>
-					
+						<button type="button" class="btn btn-lg btn-default">Default</button>
+						<button type="button" class="btn btn-lg btn-primary">Primary</button>
+						<button type="button" class="btn btn-lg btn-success">Success</button>
+						<button type="button" class="btn btn-lg btn-info">Info</button>
+						<button type="button" class="btn btn-lg btn-warning">Warning</button>
+						<button type="button" class="btn btn-lg btn-danger">Danger</button>
+						<button type="button" class="btn btn-lg btn-link">Link</button>
+
 					</div> 
 					
 					<br /> <br />
-					
+
+					<p>Przykład skrótów. Znacznik <b>abbr</b> (skrót - abbreviation).</p>
+
 					<p>This web site is about <abbr title="HyperText Markup Language">HTML</abbr> and <abbr title="Cascading Style Sheets">CSS</abbr>.</p>
-					
-					<p>According to <cite>the Bible</cite>, after six days God said <q>screw this for a lark, I'm having a nap</q>.</p>
+
+					<hr /><p>Przykład definicji. Znacznik <b>dfn</b></p>
 
 					<p>Bob's <dfn title="Dog">canine</dfn> mother and <dfn title="Horse">equine</dfn> father sat him down and carefully explained that he was an <dfn title="A mutation that combines two or more sets of chromosomes from different species">allopolyploid</dfn> organism.</p>
 
+					<hr /><p>Przykład stosowania cytatów - odpowiednio znaczniki <b>q</b> i <b>blockquote</b></p>
+
+					<p>According to <cite>the Bible</cite>, after six days God said <q>screw this for a lark, I'm having a nap</q>.</p>
+
+					<p>According to <cite>the Bible</cite>, after six days God said <blockquote><p>screw this for a lark, I'm having a nap.</p></blockquote></p>
+
+					<hr /><p>Przykład indeksu dolnego - H<sub>2</sub>O; oraz górnego - 100 m<sup>2</sup></p>
+
+					<hr /><p>Zmiany treści - znacznik <b>ins</b> oraz <b>del</b></p>
+
+					<p>W sytuacji kiedy jakaś informacja jest <del>przedawniona</del>, ale nie chcemy jej usuwać z naszej strony
+								możemy użyć znacznika del. <ins>Nowa treść</ins> może zostać wpisana między tagi ins (podkreślenie).</p>
+
 					<br /> <br />
-					
+
+					<div align="center" class="photo-div" id="slider">
+
+					</div>
+
+					<br /> <br />
+
 					<section class="row">
 				<!-- col-lg-offset-1 -->
 						<div class="col-xs-12 col-sm-9 col-md-7 col-lg-6 photo-div">

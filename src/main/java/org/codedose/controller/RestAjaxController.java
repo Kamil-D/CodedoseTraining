@@ -1,5 +1,7 @@
 package org.codedose.controller;
 
+import org.codedose.util.StaticResources;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +14,12 @@ import java.util.Map;
 @RestController
 public class RestAjaxController {
 
+    @Autowired
+    StaticResources staticResources;
+
     @RequestMapping(value = "/getAjax", method = RequestMethod.GET)
     public String getAjax(Map<String, Object> model) {
-        return "\\m/";
+        return staticResources.HughJackmanBiography;
     }
 
 }

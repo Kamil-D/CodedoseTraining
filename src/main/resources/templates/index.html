@@ -8,7 +8,7 @@
     <!-- W head znajdują się: kodowanie znaków, język, tytuł i opis w wyszukiwarce, skrypty JavaScript,
     arkusze styli CSS, czcionki Google'a-->
     <meta charset="UTF-8">
-    <title>Hugh Jackman - Wolverine</title>
+    <title>Hugh "Wolverine" Jackman - Unofficial Website</title>
 	<meta name="description" content="Witryna internetowa będąca małym hołdem dla Hugh Jackmana wcielającego się w filmową postać Wolverine'a" />
 	<meta name="keywords" content="Wolverine, Rosomak, X-Men, Mutant, Hugh Jackman, Weapon X, Broń X, Adamantium claws, szpony" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
@@ -57,7 +57,7 @@
 			$.ajax({
 				url: "http://localhost:8080/getAjax"
 			}).then(function(data) {
-				$('.containerAjax').append(data);
+				$('.containerAjax').text(data);
 			});
 		}
 
@@ -343,9 +343,9 @@
 					</ol>
 				
 				</div>
-			
+
 			</div>
-			
+
 			<!-- <div class="col-md-9 content"> -->
 			
 				<div class="col-md-9 content jumbotron">
@@ -506,10 +506,7 @@
 					</div>
 					
 				</div>
-		
-		
-		</div>
-		
+
 		
 		<div id="footer" class="col-md-12">
 
@@ -520,7 +517,8 @@
 		</div>
 	
 	</div>
-	
+
+	</div>
 			
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"/>
